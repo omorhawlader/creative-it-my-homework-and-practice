@@ -223,3 +223,12 @@ var_dump($_nullval);
 ```
 
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+
+---
+
+Created by [Omor Hawlader (Omar)](https://github.com/omorhawlader).
+
+
