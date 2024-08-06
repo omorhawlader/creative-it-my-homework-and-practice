@@ -38,9 +38,6 @@ print_r($courses['Web Development']["PHP"]) ;
 //  solve switch problem  
 $result=0;
 switch($result) {
-    case 0:
-        echo "You Have Fail";
-        break;
     case ($result >= 80 && $result <= 100):
         echo "You Got A+";
         break;
@@ -82,4 +79,5 @@ if($age >= 18 && $dead){
     echo "The voter must be at least 18 years old. Or He/She Dead";
 }
 
+echo"omar";
 

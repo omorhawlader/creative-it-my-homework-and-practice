@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run MySQL Script",
+      "type": "shell",
+      "command": "cmd",
+      "args": ["/c", "app.cmd"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}
