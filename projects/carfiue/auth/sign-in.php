@@ -1,3 +1,5 @@
+<?php session_start() ?>
+<?php if (isset($_SESSION["id"])) header('location: ../backend/home/dashboard.php') ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,19 +49,47 @@
             <div class="logo">
                 <a href="index.html">Neptune</a>
             </div>
-            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="sign-up.html">Sign Up</a></p>
+            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="sign_up.php">Sign Up</a></p>
 
-            <div class="auth-credentials m-b-xxl">
-                <label for="signInEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
 
-                <label for="signInPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-            </div>
+            <?php if (isset($_SESSION["flag"]) && $_SESSION["flag"] === "true") { ?>
 
-            <div class="auth-submit">
-                <a href="#" class="btn btn-primary">Sign In</a>
-            </div>
+
+                <div class="alert alert-custom" role="alert">
+                    <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
+                    <div class="alert-content">
+                        <h4 class="text-success">You are successfully sign up.</h1>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <form action="sign-inhandler.php" method="post">
+                <div class="auth-credentials m-b-xxl">
+                    <label for="signInEmail" class="form-label">Email address</label>
+                    <input name="email" value="<?= $_SESSION['email'] ?? '' ?>" type="email" class="form-control m-b-md <?php echo isset($_SESSION['email_error']) ? 'is-invalid' : ''; ?>" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
+
+                    <!-- //! show if email_error -->
+                    <div class="form-text m-b-md text-danger">
+                        <?php echo $_SESSION['email_error'] ?? '' ?>
+                    </div>
+
+                    <label for="signInPassword" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control <?php echo isset($_SESSION['password_error']) ? 'is-invalid' : ''; ?>" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                    <!-- //! show if password_error -->
+                    <div class="form-text m-b-md text-danger">
+                        <?php echo $_SESSION['password_error'] ?? '' ?>
+                    </div>
+
+                </div>
+                <div class="form-text m-b-md text-danger">
+                    <?php echo $_SESSION['error'] ?? '' ?>
+                </div>
+
+                <div class="auth-submit">
+                    <button type="submit" name="submit" class="btn btn-primary">Sign In</button>
+                </div>
+                <?php session_destroy() ?>
+            </form>
             <div class="divider"></div>
         </div>
     </div>
